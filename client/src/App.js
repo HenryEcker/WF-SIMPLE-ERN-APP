@@ -2,6 +2,9 @@ import './App.scss';
 import {useEffect, useState} from "react";
 
 
+/**
+ * @summary Unpacks each object from data and produces a tr
+ */
 const buildRow = ({id, name, number, description}) => {
     return (
         <tr data-row-id={id} key={id}>
@@ -11,10 +14,13 @@ const buildRow = ({id, name, number, description}) => {
         </tr>
     );
 }
-
+/**
+ * @summary Display the data. Return nothing if there is no data, or returns a populated Table with the values
+ * @returns {JSX.Element | null}
+ */
 const buildTable = data => {
     if (!data || data.length === 0) {
-        return; // Render nothing if no data
+        return null; // Render nothing if no data
     }
     return (
         <table className="data-table">
@@ -31,6 +37,10 @@ const buildTable = data => {
 };
 
 
+/**
+ * @summary fetches data from the api and updates the data in App
+ * @param setData mutator function to update data
+ */
 const pullDownData = (setData) => {
     // Fetch (append date to avoid any caching issues)
     fetch(`/api/data?${new Date().getTime()}`)
