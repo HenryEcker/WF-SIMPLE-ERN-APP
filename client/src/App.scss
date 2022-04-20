@@ -1,0 +1,27 @@
+body {
+  background: darkgray;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+  }
+
+  th {
+    font-size: 16pt;
+  }
+
+  td {
+    font-size: 14pt;
+  }
+}
