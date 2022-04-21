@@ -4,10 +4,12 @@ import {useEffect, useState} from "react";
 
 /**
  * @summary Unpacks each object from data and produces a tr
+ * @returns {JSX.Element}
  */
-const buildRow = ({id, name, number, description}) => {
+const Row = (props) => {
+    const {id, name, number, description} = props;
     return (
-        <tr data-row-id={id} key={id}>
+        <tr data-row-id={id}>
             <td>{name}</td>
             <td>{number}</td>
             <td>{description}</td>
@@ -18,8 +20,8 @@ const buildRow = ({id, name, number, description}) => {
  * @summary Display the data. Return nothing if there is no data, or returns a populated Table with the values
  * @returns {JSX.Element | null}
  */
-const buildTable = data => {
-    if (!data || data.length === 0) {
+const Table = props => {
+    if (!props.data || props.data.length === 0) {
         return null; // Render nothing if no data
     }
     return (
@@ -30,7 +32,7 @@ const buildTable = data => {
             <th>Description</th>
             </thead>
             <tbody>
-            {data.map(buildRow)}
+            {props.data.map(rowData => <Row key={rowData["id"]} {...rowData}/>)}
             </tbody>
         </table>
     )
@@ -61,7 +63,7 @@ const App = () => {
     return (
         <>
             <h1>Some Summary Data</h1>
-            {buildTable(data)}
+            <Table data={data}/>
         </>
     );
 };
