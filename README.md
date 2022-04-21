@@ -19,3 +19,9 @@ The file that is being read is located at ./resource/data.json (The format is a 
 2. The response is displayed in a simple HTML table
 3. This information is requested by the client at a set interval of 60 seconds.
 
+
+# Python Updater
+
+Even though the Python Updater is now included, running it will alter the data.json file whose current structure is being used by the client.
+
+The client application would also need to be updated to accommodate new fields.
