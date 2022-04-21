@@ -6,7 +6,7 @@ The React application is built and served from ./client/build.
 The express server is run with npm start and is served from ./bin/www
 The file that is being read is located at ./resource/data.json (The format is a JSON array and printed with indent=4)
 
-#Setup
+# Setup
 1. run `npm install` from the top level
 2. run `npm start` to start the server
 3. To build the client
