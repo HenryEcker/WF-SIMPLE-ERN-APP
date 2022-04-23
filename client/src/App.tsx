@@ -1,21 +1,25 @@
 import "./App.scss";
 import {useEffect, useState} from "react";
 import DataTable from "./components/data-table/DataTable";
-
+import {DataItem} from "./Types";
 
 /**
  * @summary fetches data from the api and updates the data in App
  * @param setData mutator function to update data
  */
-const pullDownData = (setData) => {
+const pullDownData = (setData: React.Dispatch<React.SetStateAction<DataItem[]>>): void => {
     // Fetch (append date to avoid any caching issues)
     fetch(`/api/data?${new Date().getTime()}`)
-        .then(res => res.json()) // Resolve JSON
-        .then(resData => setData(resData)); // update the data value with the new information
-};
+        .then((res: Response) => res.json()) // Resolve JSON
+        .then((resData: DataItem[]) => setData(resData)) // update the data value with the new information
+        .catch((err: PromiseRejectionEvent) => {
+            // On Error (like Status 500) just log to console
+            console.error(err);
+        });
+}
 
-const App = () => {
-    const [data, setData] = useState([]);
+const App = (): JSX.Element => {
+    const [data, setData] = useState<DataItem[]>([]);
     const pollRate = 60; // How frequently to fetch new data (in seconds)
 
     useEffect(() => {
@@ -33,3 +37,4 @@ const App = () => {
 };
 
 export default App;
+

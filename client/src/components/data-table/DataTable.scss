@@ -1,0 +1,30 @@
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tbody tr {
+    @mixin themed-row($theme-name, $background-color, $font-color) {
+      &.#{$theme-name} {
+        background-color: $background-color;
+        color: $font-color;
+      }
+    }
+    @include themed-row("okay", lightgreen, navy);
+    @include themed-row("warning", orange, black);
+    @include themed-row("alert", red, white);
+  }
+
+  th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+  }
+
+  th {
+    font-size: 16pt;
+  }
+
+  td {
+    font-size: 14pt;
+  }
+}

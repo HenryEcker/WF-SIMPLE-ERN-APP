@@ -1,10 +1,15 @@
+import {DataItem} from "../../Types";
+import "./DataTable.scss";
+
+type DataTableRowTheme = "alert" | "warning" | "okay";
+
 /**
  * @summary Determine which CSS class to apply to the table row based on `number`
  *
  * @param {number} number A numeric value
- * @returns {"alert" | "warning" | "okay"} CSS class based on the value parameter
+ * @returns {DataTableRowTheme} CSS class based on the value parameter
  */
-const chooseTheme = number => {
+const chooseTheme = (number: number): DataTableRowTheme => {
     if (number > 50) {
         return "alert";
     } else if (number > 25) {
@@ -16,9 +21,8 @@ const chooseTheme = number => {
 
 /**
  * @summary Unpacks each object from data and produces a tr
- * @returns {JSX.Element}
  */
-const Row = props => {
+const Row = (props: DataItem): JSX.Element => {
     const {id, name, number, description} = props;
     return (
         <tr data-row-id={id} className={chooseTheme(number)}>
@@ -30,10 +34,9 @@ const Row = props => {
 }
 /**
  * @summary Display the data. Return nothing if there is no data, or returns a populated Table with the values
- * @returns {JSX.Element | null}
  */
-const DataTable = props => {
-    if (!props.data || props.data.length === 0) {
+const DataTable = (props: { data: DataItem[] }): JSX.Element | null => {
+    if (props.data.length === 0) {
         return null; // Render nothing if no data
     }
     return (
@@ -44,7 +47,7 @@ const DataTable = props => {
             <th>Description</th>
             </thead>
             <tbody>
-            {props.data.map(rowData => <Row key={rowData["id"]} {...rowData}/>)}
+            {props.data.map((rowData) => <Row key={rowData["id"]} {...rowData}/>)}
             </tbody>
         </table>
     )
