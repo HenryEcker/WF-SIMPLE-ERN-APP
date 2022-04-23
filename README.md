@@ -10,7 +10,8 @@ The file that is being read is located at ./resource/data.json (The format is a 
 1. run `npm install` from the top level
 2. run `npm start` to start the server
 
-The client build is included so it should be immediately available. However, if needed the client can be rebuild as follows:
+The client build is included, so it should be immediately available. However, if needed the client can be rebuild as
+follows:
 1. `cd client`
 2. `npm install`
 3. `npm run build`
