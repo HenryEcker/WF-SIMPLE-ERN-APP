@@ -12,7 +12,7 @@ const pullDownData = (setData: React.Dispatch<React.SetStateAction<DataItem[]>>)
     fetch(`/api/data?${new Date().getTime()}`)
         .then((res: Response) => res.json()) // Resolve JSON
         .then((resData: DataItem[]) => setData(resData)) // update the data value with the new information
-        .catch((err: PromiseRejectionEvent) => {
+        .catch((err: Error) => {
             // On Error (like Status 500) just log to console
             console.error(err);
         });
