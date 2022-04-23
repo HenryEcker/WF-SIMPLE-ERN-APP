@@ -1,5 +1,5 @@
 import "./App.scss";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import DataTable from "./components/data-table/DataTable";
 import {DataItem} from "./Types";
 
